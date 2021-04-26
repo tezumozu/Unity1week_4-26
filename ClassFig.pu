@@ -1,0 +1,78 @@
+@startuml
+namespace Inputs{
+	interface IGetButton{
+		IObsevable pressedIn{get;}
+		IObsevable relesedIn{get;}
+	}
+
+	class Controller{
+
+	}
+
+	Controller --|> IGetButton
+}
+
+namespace GameSystem{
+	enum GameStatus{
+		INIT,
+		RUN,
+		RESULT,
+		END,
+		STOP
+	}
+
+	class GameManager{
+		GameStatus status{get;}
+		int stageNum{get;}
+		void init()
+	}
+
+	class ScoreManager{
+
+	}
+
+	GameStatus --o GameManager
+}
+
+namespace Player{
+	class Kamo<<monobi>>{
+		void setCon()
+	}
+
+	class KoGamo<<monobi>>{
+	}
+
+	interface ICaught{
+
+	}
+
+	KoGamo --|> ICaught
+	Kamo -left-> KoGamo
+	Kamo -right-> GameSystem.GameManager
+	Kamo -up-> Inputs.IGetButton
+
+}
+
+namespace Trap{
+	enum Trapkind{
+		CAT,
+		HOLE,
+		GUM
+	}
+
+	class Trap{
+		Trapkind kind
+		void catch()
+	}
+
+	class Cat<<monobi>>{
+
+	}
+
+	Cat --|> Trap
+	Trap --> Player.ICaught
+	Trapkind --o Trap
+}
+
+
+@enduml
