@@ -27,11 +27,9 @@ namespace TitleSystem{
                     status = UIStatus.RUN;
                     SceneLoader loader =  GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
 
-                    //購読の終了
-                    pressed.Dispose();
                     loader.LoadScene("GameScene");
                 }
-            });
+            }).AddTo(gameObject);
         }
     }
 }

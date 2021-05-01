@@ -14,6 +14,7 @@ namespace SceneLoads{
         string targetName = "";
         public void LoadScene(string name){
             targetName = name;
+            Debug.Log(name);
             StartCoroutine("LoadData");
         }
 
